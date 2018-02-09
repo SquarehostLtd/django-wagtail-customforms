@@ -11,13 +11,13 @@ Quick start
 
     pip install django-wagtail-customforms
 
-1. Add "customforms" to your INSTALLED_APPS setting like this::
+2. Add "customforms" to your INSTALLED_APPS setting like this::
 
     INSTALLED_APPS = [
         ...
         'customforms',
     ]
 
-2. Check out the example app for usage.
+3. Check out the example app for usage.
 
-3. Run `python manage.py migrate` once your models are set up.
+4. Run `python manage.py migrate` once your models are set up.
