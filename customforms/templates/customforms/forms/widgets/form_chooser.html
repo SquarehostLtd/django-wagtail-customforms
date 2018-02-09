@@ -1,0 +1,8 @@
+{% extends "wagtailadmin/widgets/chooser.html" %}
+{% block chooser_class %}form-chooser{% endblock %}
+
+{% block chosen_state_view %}
+    <span class="title">{{ form.title }}</span>
+{% endblock %}
+
+{% block edit_chosen_item_url %}{% if form %}{% url 'customforms_form_modeladmin_edit' form.id %}{% endif %}{% endblock %}

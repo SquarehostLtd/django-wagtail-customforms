@@ -1,0 +1,20 @@
+{% load i18n %}
+{% if forms %}
+    {% if is_searching %}
+        <h2>
+        {% blocktrans count counter=forms.paginator.count %}
+            There is one match
+        {% plural %}
+            There are {{ counter }} matches
+        {% endblocktrans %}
+        </h2>
+    {% else %}
+        <h2>{% trans "Latest forms" %}</h2>
+    {% endif %}
+
+    {% include "customforms/list.html" with choosing=1 %}
+
+    {% include "wagtailadmin/shared/pagination_nav.html" with items=forms is_ajax=1 %}
+{% else %}
+    <p>{% blocktrans %}Sorry, no forms match "<em>{{ query_string }}</em>"{% endblocktrans %}</p>
+{% endif %}
