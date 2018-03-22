@@ -1,9 +1,10 @@
 {% load wagtailcore_tags %}
+{% load i18n %}
 
 <div class="customform">
     <form action="{% url 'customforms:submit' value.pk %}" method="POST">
         {% csrf_token %}
         {{ form }}
-        <input type="submit">
+        <button type="submit">{% trans 'Submit' %}</button>
     </form>
 </div>
