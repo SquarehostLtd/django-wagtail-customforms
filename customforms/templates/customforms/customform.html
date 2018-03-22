@@ -1,4 +1,5 @@
 {% load wagtailcore_tags %}
+{% load i18n %}
 <html>
     <head>
         <title>{{ page.title }}</title>
@@ -9,7 +10,7 @@
         <form action="{% pageurl page %}" method="POST">
             {% csrf_token %}
             {{ form }}
-            <input type="submit">
+            <button type="submit">{% trans 'Submit' %}</button>
         </form>
     </body>
 </html>

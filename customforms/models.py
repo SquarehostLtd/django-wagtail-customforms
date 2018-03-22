@@ -28,7 +28,7 @@ NEW_FORM_FIELD_CHOICES = FORM_FIELD_CHOICES + (('blocktext', _('Block of text'))
 
 
 class CustomInput(Widget):
-    template_name = 'customform/forms/widgets/blocktext.html'
+    template_name = 'customforms/forms/widgets/blocktext.html'
 
 
 class CustomBlockTextField(CharField):
