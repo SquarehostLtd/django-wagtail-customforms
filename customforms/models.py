@@ -26,6 +26,13 @@ import os, json
 
 NEW_FORM_FIELD_CHOICES = FORM_FIELD_CHOICES + (('blocktext', _('Block of text')),)
 
+if hasattr(settings, 'FORM_TEMPLATE_CHOICES'):
+    FORM_TEMPLATE_CHOICES = settings.FORM_TEMPLATE_CHOICES
+else:
+    FORM_TEMPLATE_CHOICES = (
+        ('standard', 'Standard'),
+    )
+
 
 class CustomInput(Widget):
     template_name = 'customforms/forms/widgets/blocktext.html'
@@ -151,10 +158,18 @@ class Form(CollectionMember, index.Indexed, ClusterableModel):
         on_delete=models.SET_NULL
     )
 
+    form_template = models.CharField(
+        choices=FORM_TEMPLATE_CHOICES,
+        null=True,
+        blank=True,
+        max_length=255
+    )
+
     created_at = models.DateTimeField(verbose_name=_('created at'), auto_now_add=True)
 
     panels = [
         FieldPanel('title', classname="full"),
+        FieldPanel('form_template'),
         MultiFieldPanel([
             FieldRowPanel([
                 FieldPanel('from_address', classname="col6"),

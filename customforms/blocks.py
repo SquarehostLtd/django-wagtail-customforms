@@ -2,6 +2,8 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.utils.functional import cached_property
 from django.utils.html import format_html
+from django.utils.safestring import mark_safe
+from django.template.loader import render_to_string
 
 from wagtail.core.blocks import ChooserBlock
 
@@ -39,6 +41,28 @@ class FormChooserBlock(ChooserBlock):
 
         context['form'] = form
         return context
+
+    def render(self, value, context=None):
+        """
+        Return a text rendering of 'value', suitable for display on templates. By default, this will
+        use a template (with the passed context, supplemented by the result of get_context) if a
+        'template' property is specified on the block, and fall back on render_basic otherwise.
+        """
+        template = self.get_template(context=context, value=value)
+        if not template:
+            return self.render_basic(value, context=context)
+
+        if context is None:
+            new_context = self.get_context(value)
+        else:
+            new_context = self.get_context(value, parent_context=dict(context))
+
+        return mark_safe(render_to_string(template, new_context))
+
+    def get_template(self, context=None, value=None):
+        if not value.form_template or value.form_template == 'standard':
+            return getattr(self.meta, 'template', None)
+        return value.form_template
 
     class Meta:
         icon = "form"
