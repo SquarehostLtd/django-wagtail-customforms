@@ -40,6 +40,8 @@ class FormChooserBlock(ChooserBlock):
             form = value.get_form(page=value, user=request.user)
 
         context['form'] = form
+        if value.display_title:
+            context['form_title'] = value.title
         return context
 
     def render(self, value, context=None):

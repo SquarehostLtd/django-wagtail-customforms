@@ -5,6 +5,7 @@
                 ('standard', 'Standard'),
                 ('path/to/custom/template.html', 'Styled Template'),
             )
+    - Added the ability to display form title above form fields
 
 - 0.2.5
     - missed an input in last update

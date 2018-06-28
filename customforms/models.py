@@ -142,12 +142,29 @@ class Form(CollectionMember, index.Indexed, ClusterableModel):
         max_length=255
     )
 
-    to_address = models.CharField(
-        verbose_name=_('to address'), max_length=255, blank=True,
-        help_text=_("Optional - form submissions will be emailed to these addresses. Separate multiple addresses by comma.")
+    display_title = models.BooleanField(
+        default=False,
+        help_text=_("If you wish to display the title above the form fields tick this.")
     )
-    from_address = models.CharField(verbose_name=_('from address'), max_length=255, blank=True)
-    subject = models.CharField(verbose_name=_('subject'), max_length=255, blank=True)
+
+    to_address = models.CharField(
+        verbose_name=_('to address'),
+        max_length=255,
+        blank=True,
+        help_text=_("Optional - form submissions will be emailed to these addresses. Separate multiple addresses by commas.")
+    )
+
+    from_address = models.CharField(
+        verbose_name=_('from address'),
+        max_length=255,
+        blank=True
+    )
+
+    subject = models.CharField(
+        verbose_name=_('subject'),
+        max_length=255,
+        blank=True
+    )
 
     uploaded_by_user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -169,6 +186,7 @@ class Form(CollectionMember, index.Indexed, ClusterableModel):
 
     panels = [
         FieldPanel('title', classname="full"),
+        FieldPanel('display_title'),
         FieldPanel('form_template'),
         MultiFieldPanel([
             FieldRowPanel([
