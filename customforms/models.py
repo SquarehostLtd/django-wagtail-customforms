@@ -199,6 +199,7 @@ class Form(CollectionMember, index.Indexed, ClusterableModel):
         FieldPanel('title', classname="full"),
         FieldPanel('display_title'),
         FieldPanel('form_template'),
+        FieldPanel('button_alignment'),
         MultiFieldPanel([
             FieldRowPanel([
                 FieldPanel('from_address', classname="col6"),

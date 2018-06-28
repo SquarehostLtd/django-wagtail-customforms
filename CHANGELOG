@@ -1,3 +1,6 @@
+- 0.2.8
+    - missed a migration and model field panel
+
 - 0.2.7
     - Added ability to align form button
 
