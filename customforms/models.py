@@ -182,6 +182,17 @@ class Form(CollectionMember, index.Indexed, ClusterableModel):
         max_length=255
     )
 
+    button_alignment = models.CharField(
+        choices=(
+            ('left', 'Left'),
+            ('right', 'Right'),
+            ('center', 'Center'),
+        ),
+        null=True,
+        blank=True,
+        max_length=255
+    )
+
     created_at = models.DateTimeField(verbose_name=_('created at'), auto_now_add=True)
 
     panels = [

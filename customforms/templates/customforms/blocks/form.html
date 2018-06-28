@@ -8,6 +8,6 @@
         <div class="customform-title">{{ form_title }}</div>
         {% endif %}
         {{ form }}
-        <button type="submit">{% trans 'Submit' %}</button>
+        <button type="submit"{% if button_alignment %} style="margin{% if button_alignment != 'center' %}-{{ button_alignment }}{% endif %}: auto;"{% endif %}>{% trans 'Submit' %}</button>
     </form>
 </div>

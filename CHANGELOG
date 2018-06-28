@@ -1,3 +1,6 @@
+- 0.2.7
+    - Added ability to align form button
+
 - 0.2.6
     - Added ability to define form templates to offer the user a choice field.
         - To get this to work add the following to your settings file:

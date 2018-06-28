@@ -42,6 +42,8 @@ class FormChooserBlock(ChooserBlock):
         context['form'] = form
         if value.display_title:
             context['form_title'] = value.title
+        if value.button_alignment:
+            context['button_alignment'] = value.button_alignment
         return context
 
     def render(self, value, context=None):
