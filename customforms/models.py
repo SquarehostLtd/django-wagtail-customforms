@@ -12,6 +12,7 @@ from wagtail.admin.edit_handlers import (
     FieldPanel, FieldRowPanel,
     InlinePanel, MultiFieldPanel
 )
+from wagtail.admin.utils import send_mail
 from wagtail.core.fields import RichTextField
 from wagtail.core.models import Page, CollectionMember
 from wagtail.contrib.forms.forms import FormBuilder, BaseForm, WagtailAdminFormPageForm
