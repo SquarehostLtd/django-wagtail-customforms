@@ -1,7 +1,7 @@
 from django.forms.models import modelform_factory
 from wagtail.admin.forms import BaseCollectionMemberForm
-
 from .permissions import permission_policy as forms_permission_policy
+
 
 class BaseFormForm(BaseCollectionMemberForm):
     permission_policy = forms_permission_policy

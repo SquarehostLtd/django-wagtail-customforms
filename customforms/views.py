@@ -252,7 +252,10 @@ def submit(request, form_id):
     except:
         pass
     if request.method == 'POST':
-        form = value.get_form(request.POST, request.FILES, page=value, user=request.user)
+        data = request.POST.copy()
+        if data.get('g-recaptcha-response'):
+            data['captcha'] = data.pop('g-recaptcha-response')
+        form = value.get_form(data, request.FILES, page=value, user=request.user)
         if form.is_valid():
             value.process_form_submission(form)
             messages.add_message(request, messages.SUCCESS, 'Thank you for submitting the form.')

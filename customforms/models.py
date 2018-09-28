@@ -21,11 +21,15 @@ from wagtail.search import index
 from wagtail.search.queryset import SearchableQuerySetMixin
 from modelcluster.fields import ParentalKey
 from modelcluster.models import ClusterableModel
+from .fields import CaptchaField
 
 import os, json
 
 
-NEW_FORM_FIELD_CHOICES = FORM_FIELD_CHOICES + (('blocktext', _('Block of text')),)
+NEW_FORM_FIELD_CHOICES = FORM_FIELD_CHOICES + (
+    ('blocktext', _('Block of text')),
+    ('captcha', _('Captcha')),
+)
 
 if hasattr(settings, 'FORM_TEMPLATE_CHOICES'):
     FORM_TEMPLATE_CHOICES = settings.FORM_TEMPLATE_CHOICES
@@ -54,6 +58,12 @@ class CustomFormBuilder(FormBuilder):
             options['initial'] = field.content
         return CustomBlockTextField(**options)
 
+    def create_captcha_field(self, field, options):
+        if field.content:
+            options['required'] = False
+            options['initial'] = field.content
+        return CaptchaField(**options)
+
     FIELD_TYPES = {
         'singleline': FormBuilder.create_singleline_field,
         'multiline': FormBuilder.create_multiline_field,
@@ -68,6 +78,7 @@ class CustomFormBuilder(FormBuilder):
         'checkboxes': FormBuilder.create_checkboxes_field,
         'checkbox': FormBuilder.create_checkbox_field,
         'blocktext': create_blocktext_field,
+        'captcha': create_captcha_field
     }
 
 
