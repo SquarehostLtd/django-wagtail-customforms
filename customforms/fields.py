@@ -26,7 +26,7 @@ class CaptchaField(forms.CharField):
             'response': value[2:-2]
         })
         if not resp.json().get('success'):
-            raise ValidationError(
+            raise forms.ValidationError(
                 _('Invalid value: %(value)s'),
                 code='invalid',
                 params={'value': value},
