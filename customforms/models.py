@@ -263,10 +263,11 @@ class Form(CollectionMember, index.Indexed, ClusterableModel):
         addresses = [x.strip() for x in self.to_address.split(',')]
         content = []
         for field in form:
-            value = field.value()
-            if isinstance(value, list):
-                value = ', '.join(value)
-            content.append('{}: {}'.format(field.label, value))
+            if not isinstance(field.field, CaptchaField):
+                value = field.value()
+                if isinstance(value, list):
+                    value = ', '.join(value)
+                content.append('{}: {}'.format(field.label, value))
         content = '\n'.join(content)
         send_mail(self.subject, content, addresses, self.from_address,)
 

@@ -1,6 +1,6 @@
-=====
+===========
 Customforms
-=====
+===========
 
 Customforms is a simple Django app to attach forms to pages.
 
