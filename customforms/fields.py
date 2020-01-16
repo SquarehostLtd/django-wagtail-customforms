@@ -1,6 +1,7 @@
 from django.conf import settings
 from django import forms
 from django.utils.html import mark_safe
+from django.utils.translation import ugettext_lazy as _
 import requests
 
 
